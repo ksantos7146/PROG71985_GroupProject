@@ -32,5 +32,6 @@ void Display_Single_Account(ACCOUNT accounts[], int numAccounts, int accountNumb
 void Display_Range_Of_Accounts(ACCOUNT accounts[], int numAccounts, float minBalance, float maxBalance);
 void Display_All_Accounts(ACCOUNT accounts[], int numAccounts);
 void Search_Account(ACCOUNT accounts[], int numAccounts, char name[]);
+void Print_Account_Info(ACCOUNT* account);
 
 #endif /* ACCOUNT_H */

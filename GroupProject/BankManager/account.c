@@ -242,7 +242,7 @@ void Display_Range_Of_Accounts(ACCOUNT accounts[], int numAccounts, float minBal
     printf("Accounts in the range %.2f to %.2f:\n", minBalance, maxBalance);
     for (i = 0; i < numAccounts; i++) {
         if (accounts[i].balance >= minBalance && accounts[i].balance <= maxBalance) {
-            printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n", accounts[i].account_number, accounts[i].customer.firstName, accounts[i].customer.lastName, accounts[i].balance, accounts[i].type == CHECKING ? "Checking" : "Savings");
+            Print_Account_Info(&accounts[i]);
             found = 1;
         }
     }
@@ -259,7 +259,7 @@ void Display_All_Accounts(ACCOUNT accounts[], int numAccounts) {
     else {
         printf("All Accounts:\n");
         for (i = 0; i < numAccounts; i++) {
-            printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n", accounts[i].account_number, accounts[i].customer.firstName, accounts[i].customer.lastName, accounts[i].balance, accounts[i].type == CHECKING ? "Checking" : "Savings");
+            Print_Account_Info(&accounts[i]);
         }
     }
 }
@@ -268,12 +268,22 @@ void Search_Account(ACCOUNT accounts[], int numAccounts, char name[]) {
     int i, found = 0;
     for (i = 0; i < numAccounts; i++) {
         if (strcmp(accounts[i].customer.firstName, name) == 0) {
-            printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n", accounts[i].account_number, accounts[i].customer.firstName, accounts[i].customer.lastName, accounts[i].balance, accounts[i].type == CHECKING ? "Checking" : "Savings");
+            Print_Account_Info(&accounts[i]);
             found = 1;
         }
     }
     if (!found) {
         printf("Account not found.\n");
     }
+}
+
+void Print_Account_Info(ACCOUNT* account)
+{
+    printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n",
+        account->account_number,
+        account->customer.firstName,
+        account->customer.lastName, 
+        account->balance, 
+        account->type == CHECKING ? "Checking" : "Savings");
 }
 
