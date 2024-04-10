@@ -12,4 +12,10 @@ typedef struct customer {
     char firstName[MAXNAME];
 }CUSTOMER;
 
+
+
+
+
+
+
 #endif //CUSTOMER_LIBRARY_H

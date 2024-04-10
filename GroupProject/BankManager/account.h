@@ -34,4 +34,11 @@ void Display_All_Accounts(ACCOUNT accounts[], int numAccounts);
 void Search_Account(ACCOUNT accounts[], int numAccounts, char name[]);
 void Print_Account_Info(ACCOUNT* account);
 
+// temporary
+int GetUserInput_AccountNumber(ACCOUNT accounts[], int numAccounts);
+void GetUserInput_Name(char* name, const char* prompt);
+float GetUserInput_Balance();
+AccountType GetUserInput_AccountType();
+void Add_Account_ToArray(ACCOUNT accounts[], int* numAccounts, int accountNumber, const char* firstName, const char* lastName, float balance, AccountType type);
+
 #endif /* ACCOUNT_H */

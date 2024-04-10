@@ -16,6 +16,7 @@ My sincerest apologies to whoever is going to read my code cause I did little to
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 void clearInputBuffer() {
     int c;
@@ -49,71 +50,32 @@ int isDuplicateAccount(ACCOUNT accounts[], int numAccounts, int accountNumber) {
     return 0; // No duplicate
 }
 
-void Add_Account(ACCOUNT accounts[], int* numAccounts) {
-    if (*numAccounts >= MAX_ACCOUNTS) {
+bool isMaxAccountsReached(int numAccounts) {
+    if (numAccounts >= MAX_ACCOUNTS) {
         printf("Cannot add more accounts. Maximum limit reached.\n");
+        return true;
+    }
+    return false;
+}
+
+void Add_Account(ACCOUNT accounts[], int* numAccounts) {
+    // check if there are too many accounts
+    if (isMaxAccountsReached(*numAccounts)) {
         return;
     }
 
-    int newAccountNumber;
-    char firstName[MAX_NAME_LENGTH];
-    char lastName[MAX_NAME_LENGTH];
-    float balance;
-    AccountType type;
+    // Get user input
+    int newAccountNumber = GetUserInput_AccountNumber(accounts, *numAccounts);  // account number
 
-    do {
-        printf("Enter account number: ");
-        if (scanf("%d", &newAccountNumber) != 1 || isDuplicateAccount(accounts, *numAccounts, newAccountNumber)) {
-            printf("Invalid account number or already exists. Please enter a different account number.\n");
-            clearInputBuffer();
-            continue;
-        }
-        clearInputBuffer();
+    char firstName[MAX_NAME_LENGTH], lastName[MAX_NAME_LENGTH]; // first and last names
+    GetUserInput_Name(firstName, "Enter first name");
+    GetUserInput_Name(lastName, "Enter last name");
 
-        printf("Enter first name (alphabetic characters only, max %d characters): ", MAX_NAME_LENGTH - 1);
-        if (scanf("%s", firstName) != 1 || !isAlphabetic(firstName)) {
-            printf("Invalid name! Please enter alphabetic characters only.\n");
-            clearInputBuffer();
-            continue;
-        }
-        clearInputBuffer();
+    float balance = GetUserInput_Balance(); // starting balance
+    AccountType type = GetUserInput_AccountType();// account type
 
-        printf("Enter first name (alphabetic characters only, max %d characters): ", MAX_NAME_LENGTH - 1);
-        if (scanf("%s", lastName) != 1 || !isAlphabetic(lastName)) {
-            printf("Invalid name! Please enter alphabetic characters only.\n");
-            clearInputBuffer();
-            continue;
-        }
-        clearInputBuffer();
-
-        printf("Enter balance: ");
-        if (scanf("%f", &balance) != 1 || balance < 0) {
-            printf("Invalid balance! Please enter a valid positive number.\n");
-            clearInputBuffer();
-            continue;
-        }
-        clearInputBuffer();
-
-        printf("Enter account type (0 for Checking, 1 for Savings): ");
-        int typeInput;
-        if (scanf("%d", &typeInput) != 1 || (typeInput != 0 && typeInput != 1)) {
-            printf("Invalid account type! Please enter 0 for Checking or 1 for Savings.\n");
-            clearInputBuffer();
-            continue;
-        }
-        type = (typeInput == 0) ? CHECKING : SAVINGS;
-        clearInputBuffer();
-
-        // Add the account
-        accounts[*numAccounts].account_number = newAccountNumber;
-        strcpy(accounts[*numAccounts].customer.firstName, firstName);
-        strcpy(accounts[*numAccounts].customer.lastName, lastName);
-        accounts[*numAccounts].balance = balance;
-        accounts[*numAccounts].type = type;
-        (*numAccounts)++;
-        printf("Account added successfully.\n");
-        break;
-    } while (1);
+    // Add the account
+    Add_Account_ToArray(accounts, numAccounts, newAccountNumber, firstName, lastName, balance, type);
 }
 
 void Delete_Account(ACCOUNT accounts[], int* numAccounts, int accountNumber) {
@@ -227,10 +189,7 @@ void Display_Single_Account(ACCOUNT accounts[], int numAccounts, int accountNumb
         }
     }
     if (found) {
-        printf("Account Number: %d\n", accounts[i].account_number);
-        printf("Name: %s %s\n", accounts[i].customer.firstName, accounts[i].customer.lastName);
-        printf("Balance: %.2f\n", accounts[i].balance);
-        printf("Type: %s\n", accounts[i].type == CHECKING ? "Checking" : "Savings");
+        Print_Account_Info(&accounts[i]);
     }
     else {
         printf("Account not found.\n");
@@ -287,3 +246,65 @@ void Print_Account_Info(ACCOUNT* account)
         account->type == CHECKING ? "Checking" : "Savings");
 }
 
+
+int GetUserInput_AccountNumber(ACCOUNT accounts[], int numAccounts) {
+    int newAccountNumber;
+    do {
+        printf("Enter account number: ");
+        //check if account number is valid and no duplicates
+        if (scanf("%d", &newAccountNumber) == 1 && !isDuplicateAccount(accounts, numAccounts, newAccountNumber)) {
+            clearInputBuffer();
+            return newAccountNumber;
+        }
+        printf("Invalid account number or already exists. Please enter a different account number.\n");
+        clearInputBuffer();
+    } while (true);
+}
+
+void GetUserInput_Name(char *name, const char *prompt) {
+    do {
+        printf("%s (alphabetic characters only, max %d characters): ", prompt, MAX_NAME_LENGTH - 1);
+        if (scanf("%s", name) == 1 && isAlphabetic(name)) {
+            clearInputBuffer();
+            return;
+        }
+        printf("Invalid name! Please enter alphabetic characters only.\n");
+        clearInputBuffer();
+    } while (true);
+}
+
+float GetUserInput_Balance() {
+    float balance;
+    do {
+        printf("Enter balance: ");
+        if (scanf("%f", &balance) == 1 && balance >= 0) {
+            clearInputBuffer();
+            return balance;
+        }
+        printf("Invalid balance! Please enter a valid positive number.\n");
+        clearInputBuffer();
+    } while (true);
+}
+
+AccountType GetUserInput_AccountType() {
+    int typeInput;
+    do {
+        printf("Enter account type (0 for Checking, 1 for Savings): ");
+        if (scanf("%d", &typeInput) == 1 && (typeInput == 0 || typeInput == 1)) {
+            clearInputBuffer();
+            return (typeInput == 0) ? CHECKING : SAVINGS;
+        }
+        printf("Invalid account type! Please enter 0 for Checking or 1 for Savings.\n");
+        clearInputBuffer();
+    } while (true);
+}
+
+void Add_Account_ToArray(ACCOUNT accounts[], int* numAccounts, int accountNumber, const char* firstName, const char* lastName, float balance, AccountType type) {
+    accounts[*numAccounts].account_number = accountNumber;
+    strcpy(accounts[*numAccounts].customer.firstName, firstName);
+    strcpy(accounts[*numAccounts].customer.lastName, lastName);
+    accounts[*numAccounts].balance = balance;
+    accounts[*numAccounts].type = type;
+    (*numAccounts)++;
+    printf("Account added successfully.\n");
+}
