@@ -56,7 +56,8 @@ void Add_Account(ACCOUNT accounts[], int* numAccounts) {
     }
 
     int newAccountNumber;
-    char name[MAX_NAME_LENGTH];
+    char firstName[MAX_NAME_LENGTH];
+    char lastName[MAX_NAME_LENGTH];
     float balance;
     AccountType type;
 
@@ -69,8 +70,16 @@ void Add_Account(ACCOUNT accounts[], int* numAccounts) {
         }
         clearInputBuffer();
 
-        printf("Enter name (alphabetic characters only, max %d characters): ", MAX_NAME_LENGTH - 1);
-        if (scanf("%s", name) != 1 || !isAlphabetic(name)) {
+        printf("Enter first name (alphabetic characters only, max %d characters): ", MAX_NAME_LENGTH - 1);
+        if (scanf("%s", firstName) != 1 || !isAlphabetic(firstName)) {
+            printf("Invalid name! Please enter alphabetic characters only.\n");
+            clearInputBuffer();
+            continue;
+        }
+        clearInputBuffer();
+
+        printf("Enter first name (alphabetic characters only, max %d characters): ", MAX_NAME_LENGTH - 1);
+        if (scanf("%s", lastName) != 1 || !isAlphabetic(lastName)) {
             printf("Invalid name! Please enter alphabetic characters only.\n");
             clearInputBuffer();
             continue;
@@ -97,7 +106,8 @@ void Add_Account(ACCOUNT accounts[], int* numAccounts) {
 
         // Add the account
         accounts[*numAccounts].account_number = newAccountNumber;
-        strcpy(accounts[*numAccounts].name, name);
+        strcpy(accounts[*numAccounts].customer.firstName, firstName);
+        strcpy(accounts[*numAccounts].customer.lastName, lastName);
         accounts[*numAccounts].balance = balance;
         accounts[*numAccounts].type = type;
         (*numAccounts)++;
@@ -135,8 +145,13 @@ void Update_Account(ACCOUNT accounts[], int numAccounts, int accountNumber) {
         }
     }
     if (found) {
-        printf("Enter new name: ");
-        if (scanf("%s", accounts[i].name) == 0) {
+        printf("Enter new first name: ");
+        if (scanf("%s", accounts[i].customer.firstName) == 0) {
+            printf("Invalid input!\n");
+            return;
+        }
+        printf("Enter new last name: ");
+        if (scanf("%s", accounts[i].customer.lastName) == 0) {
             printf("Invalid input!\n");
             return;
         }
@@ -213,7 +228,7 @@ void Display_Single_Account(ACCOUNT accounts[], int numAccounts, int accountNumb
     }
     if (found) {
         printf("Account Number: %d\n", accounts[i].account_number);
-        printf("Name: %s\n", accounts[i].name);
+        printf("Name: %s %s\n", accounts[i].customer.firstName, accounts[i].customer.lastName);
         printf("Balance: %.2f\n", accounts[i].balance);
         printf("Type: %s\n", accounts[i].type == CHECKING ? "Checking" : "Savings");
     }
@@ -227,7 +242,7 @@ void Display_Range_Of_Accounts(ACCOUNT accounts[], int numAccounts, float minBal
     printf("Accounts in the range %.2f to %.2f:\n", minBalance, maxBalance);
     for (i = 0; i < numAccounts; i++) {
         if (accounts[i].balance >= minBalance && accounts[i].balance <= maxBalance) {
-            printf("#Account Number: %d\n# Name: %s\n# Balance: %.2f\n# Type: %s\n", accounts[i].account_number, accounts[i].name, accounts[i].balance, accounts[i].type == CHECKING ? "Checking" : "Savings");
+            printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n", accounts[i].account_number, accounts[i].customer.firstName, accounts[i].customer.lastName, accounts[i].balance, accounts[i].type == CHECKING ? "Checking" : "Savings");
             found = 1;
         }
     }
@@ -244,7 +259,7 @@ void Display_All_Accounts(ACCOUNT accounts[], int numAccounts) {
     else {
         printf("All Accounts:\n");
         for (i = 0; i < numAccounts; i++) {
-            printf("\n#Account Number: %d\n# Name: %s\n# Balance: %.2f\n# Type: %s\n", accounts[i].account_number, accounts[i].name, accounts[i].balance, accounts[i].type == CHECKING ? "Checking" : "Savings");
+            printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n", accounts[i].account_number, accounts[i].customer.firstName, accounts[i].customer.lastName, accounts[i].balance, accounts[i].type == CHECKING ? "Checking" : "Savings");
         }
     }
 }
@@ -252,8 +267,8 @@ void Display_All_Accounts(ACCOUNT accounts[], int numAccounts) {
 void Search_Account(ACCOUNT accounts[], int numAccounts, char name[]) {
     int i, found = 0;
     for (i = 0; i < numAccounts; i++) {
-        if (strcmp(accounts[i].name, name) == 0) {
-            printf("#Account Number: %d\n# Name: %s\n# Balance: %.2f\n# Type: %s\n", accounts[i].account_number, accounts[i].name, accounts[i].balance, accounts[i].type == CHECKING ? "Checking" : "Savings");
+        if (strcmp(accounts[i].customer.firstName, name) == 0) {
+            printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n", accounts[i].account_number, accounts[i].customer.firstName, accounts[i].customer.lastName, accounts[i].balance, accounts[i].type == CHECKING ? "Checking" : "Savings");
             found = 1;
         }
     }
@@ -261,3 +276,4 @@ void Search_Account(ACCOUNT accounts[], int numAccounts, char name[]) {
         printf("Account not found.\n");
     }
 }
+

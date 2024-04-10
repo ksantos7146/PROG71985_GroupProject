@@ -17,7 +17,7 @@ void Save_Accounts(ACCOUNT accounts[], int numAccounts) {
     }
 
     for (i = 0; i < numAccounts; i++) {
-        fprintf(fp, "%d %s %.2f %d\n", accounts[i].account_number, accounts[i].name, accounts[i].balance, accounts[i].type);
+        fprintf(fp, "%d %s %s %.2f %d\n", accounts[i].account_number, accounts[i].customer.firstName, accounts[i].customer.lastName, accounts[i].balance, accounts[i].type);
     }
 
     fclose(fp);
@@ -27,7 +27,8 @@ void Save_Accounts(ACCOUNT accounts[], int numAccounts) {
 void Load_Accounts(ACCOUNT accounts[], int* numAccounts) {
     FILE* fp;
     int account_number, type;
-    char name[MAX_NAME_LENGTH];
+    char firstName[MAX_NAME_LENGTH];
+    char lastName[MAX_NAME_LENGTH];
     float balance;
 
     fp = fopen("accounts.txt", "r");
@@ -37,9 +38,10 @@ void Load_Accounts(ACCOUNT accounts[], int* numAccounts) {
     }
 
     *numAccounts = 0;
-    while (fscanf(fp, "%d %s %f %d", &account_number, name, &balance, &type) != EOF) {
+    while (fscanf(fp, "%d %s %s %f %d", &account_number, firstName, lastName, &balance, &type) != EOF) {
         accounts[*numAccounts].account_number = account_number;
-        strcpy(accounts[*numAccounts].name, name);
+        strcpy(accounts[*numAccounts].customer.firstName, firstName);
+        strcpy(accounts[*numAccounts].customer.lastName, lastName);
         accounts[*numAccounts].balance = balance;
         accounts[*numAccounts].type = type;
         (*numAccounts)++;

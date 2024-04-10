@@ -1,5 +1,6 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
+#include "customer.h"
 
 /*Macros*/
 #define MAX_ACCOUNTS 100
@@ -17,7 +18,7 @@ typedef enum {
 /*This is our bread and butter the account struct*/
 typedef struct {
     int account_number;
-    char name[MAX_NAME_LENGTH];
+    CUSTOMER customer;
     float balance;
     AccountType type;
 } ACCOUNT;
