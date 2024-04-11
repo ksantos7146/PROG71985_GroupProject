@@ -11,6 +11,6 @@
 #include"file_operations.h"
 
 void Display_Menu();
-void ProcessUserChoice(int choice, ACCOUNT accounts[], int* numAccounts);
+void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts);
 
 #endif //MENU_LIBRARY_H
