@@ -41,6 +41,10 @@ void Load_Accounts(ACCOUNT accounts[], int* numAccounts) {
 
     *numAccounts = 0;
     while (fscanf(fp, "%d %s %s %f %d", &account_number, firstName, lastName, &balance, &type) != EOF) {
+
+        if (balance < 0 || (type != CHECKING && type != SAVINGS)) {
+            continue;
+        }
         accounts[*numAccounts].account_number = account_number;
         strcpy(accounts[*numAccounts].customer.firstName, firstName);
         strcpy(accounts[*numAccounts].customer.lastName, lastName);
