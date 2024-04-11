@@ -31,20 +31,23 @@ int main() {
     int numAccounts = 0;
     int choice;
 
+    // load existing accounts
     Load_Accounts(accounts, &numAccounts);
 
+    // main program loop
     do {
         Display_Menu();
 
         if (scanf("%d", &choice) != 1) {
             printf("Invalid Option Selected. Try Again\n");
             clearInputBuffer();
-            continue;
+            continue;   // restart loop if the input is invalid
         }
+
         Process_User_Choice(choice, accounts, &numAccounts);
         clearInputBuffer();
 
-    } while (choice != 11);
+    } while (choice != EXIT); // exit program if user chooses 11
 
     return 0;
 }

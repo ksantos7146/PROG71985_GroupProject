@@ -42,8 +42,9 @@ int isAlphabetic(const char* str) {
 }
 
 int isDuplicateAccount(ACCOUNT accounts[], int numAccounts, int accountNumber) {
+    // iterate through each element in the array
     for (int i = 0; i < numAccounts; i++) {
-        if (accounts[i].account_number == accountNumber) {
+        if (accounts[i].account_number == accountNumber) { // check for a matched account number
             return 1; // Duplicate found
         }
     }
@@ -236,6 +237,7 @@ void Search_Account(ACCOUNT accounts[], int numAccounts, char name[]) {
     }
 }
 
+// print account information
 void Print_Account_Info(ACCOUNT* account)
 {
     printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n \n",
@@ -246,7 +248,7 @@ void Print_Account_Info(ACCOUNT* account)
         account->type == CHECKING ? "Checking" : "Savings");
 }
 
-
+// get a valid and unique account number from user
 int GetUserInput_AccountNumber(ACCOUNT accounts[], int numAccounts) {
     int newAccountNumber;
     do {
@@ -261,6 +263,7 @@ int GetUserInput_AccountNumber(ACCOUNT accounts[], int numAccounts) {
     } while (true);
 }
 
+// get a name from user input
 void GetUserInput_Name(char *name, const char *prompt) {
     do {
         printf("%s (alphabetic characters only, max %d characters): ", prompt, MAX_NAME_LENGTH - 1);
@@ -273,10 +276,12 @@ void GetUserInput_Name(char *name, const char *prompt) {
     } while (true);
 }
 
+// get valid balance input from user
 float GetUserInput_Balance() {
     float balance;
     do {
         printf("Enter balance: ");
+        // check if balance is valid
         if (scanf("%f", &balance) == 1 && balance >= 0) {
             clearInputBuffer();
             return balance;
@@ -286,10 +291,12 @@ float GetUserInput_Balance() {
     } while (true);
 }
 
+// get account type from the user
 AccountType GetUserInput_AccountType() {
     int typeInput;
     do {
         printf("Enter account type (0 for Checking, 1 for Savings): ");
+        // check if account type is valid
         if (scanf("%d", &typeInput) == 1 && (typeInput == 0 || typeInput == 1)) {
             clearInputBuffer();
             return (typeInput == 0) ? CHECKING : SAVINGS;
@@ -299,6 +306,7 @@ AccountType GetUserInput_AccountType() {
     } while (true);
 }
 
+// add a new account to an accounts array
 void Add_Account_ToArray(ACCOUNT accounts[], int* numAccounts, int accountNumber, const char* firstName, const char* lastName, float balance, AccountType type) {
     accounts[*numAccounts].account_number = accountNumber;
     strcpy(accounts[*numAccounts].customer.firstName, firstName);

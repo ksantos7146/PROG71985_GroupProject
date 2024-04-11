@@ -1,7 +1,8 @@
 //group3 - karls, madisont, adilf prog71985 - group project - menu function definitions
+#define _CRT_SECURE_NO_WARNINGS
 
-#include"account.h"
 #include "menu.h"
+#include"account.h"
 #include"file_operations.h"
 
 void Display_Menu() {
@@ -25,10 +26,10 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
     char name[MAX_NAME_LENGTH];
 
     switch (choice) {
-    case 1: // Add Account
+    case ADD_ACCOUNT: // Add Account
         Add_Account(accounts, numAccounts);
         break;
-    case 2: // Delete Account
+    case DELETE_ACCOUNT: // Delete Account
         printf("Enter account number to delete: ");
         if (scanf("%d", &accountNumber) == 1) {
             Delete_Account(accounts, numAccounts, accountNumber);
@@ -37,7 +38,7 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
             printf("Invalid input!\n");
         }
         break;
-    case 3: // Update Account
+    case UPDATE_ACCOUNT: // Update Account
         printf("Enter account number to update: ");
         if (scanf("%d", &accountNumber) == 1) {
             Update_Account(accounts, *numAccounts, accountNumber);
@@ -46,7 +47,7 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
             printf("Invalid input!\n");
         }
         break;
-    case 4: // Deposit
+    case DEPOSIT: // Deposit
         printf("Enter account number to deposit: ");
         if (scanf("%d", &accountNumber) == 1) {
             Deposit(accounts, *numAccounts, accountNumber);
@@ -55,7 +56,7 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
             printf("Invalid input!\n");
         }
         break;
-    case 5: // Withdraw
+    case WITHDRAW: // Withdraw
         printf("Enter account number to withdraw: ");
         if (scanf("%d", &accountNumber) == 1) {
             Withdraw(accounts, *numAccounts, accountNumber);
@@ -64,7 +65,7 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
             printf("Invalid input!\n");
         }
         break;
-    case 6: // Display Single Account
+    case DISPLAY_SINGLE_ACCOUNT: // Display Single Account
         printf("Enter account number to display: ");
         if (scanf("%d", &accountNumber) == 1) {
             Display_Single_Account(accounts, *numAccounts, accountNumber);
@@ -73,7 +74,7 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
             printf("Invalid input!\n");
         }
         break;
-    case 7: // Display Accounts within Balance Range
+    case DISPLAY_RANGE_OF_ACCOUNTS: // Display Accounts within Balance Range
         printf("Enter minimum balance: ");
         if (scanf("%f", &minBalance) == 1) {
             printf("Enter maximum balance: ");
@@ -88,10 +89,10 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
             printf("Invalid input!\n");
         }
         break;
-    case 8: // Display All Accounts
+    case DISPLAY_ALL_ACCOUNTS: // Display All Accounts
         Display_All_Accounts(accounts, *numAccounts);
         break;
-    case 9: // Search Account by Name
+    case SEARCH_ACCOUNT: // Search Account by Name
         printf("Enter name to search: ");
         if (scanf("%49s", name) == 1) { // Limiting the input to avoid buffer overflow
             Search_Account(accounts, *numAccounts, name);
@@ -100,10 +101,10 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
             printf("Invalid input!\n");
         }
         break;
-    case 10: // Save Accounts to File
+    case SAVE_ACCOUNTS: // Save Accounts to File
         Save_Accounts(accounts, *numAccounts);
         break;
-    case 11: // Exit
+    case EXIT: // Exit
         printf("Exiting...\n");
         break;
     default:
