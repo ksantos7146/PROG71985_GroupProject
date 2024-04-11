@@ -1,5 +1,5 @@
 
-//group3 - karls, madisont, adilfprog71985 - group project - account object implementation
+//group3 - karls, madisont, adilf prog71985 - group project - account object implementation
 
 
 /*
@@ -238,7 +238,7 @@ void Search_Account(ACCOUNT accounts[], int numAccounts, char name[]) {
 
 void Print_Account_Info(ACCOUNT* account)
 {
-    printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n",
+    printf("#Account Number: %d\n# Name: %s %s\n# Balance: %.2f\n# Type: %s\n \n",
         account->account_number,
         account->customer.firstName,
         account->customer.lastName, 

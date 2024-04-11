@@ -1,6 +1,7 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 #include "customer.h"
+#include "stdbool.h"
 
 /*Macros*/
 #define MAX_ACCOUNTS 100
@@ -33,12 +34,20 @@ void Display_Range_Of_Accounts(ACCOUNT accounts[], int numAccounts, float minBal
 void Display_All_Accounts(ACCOUNT accounts[], int numAccounts);
 void Search_Account(ACCOUNT accounts[], int numAccounts, char name[]);
 void Print_Account_Info(ACCOUNT* account);
+void Add_Account_ToArray(ACCOUNT accounts[], int* numAccounts, int accountNumber, const char* firstName, const char* lastName, float balance, AccountType type);
 
-// temporary
+// User input functions
 int GetUserInput_AccountNumber(ACCOUNT accounts[], int numAccounts);
 void GetUserInput_Name(char* name, const char* prompt);
 float GetUserInput_Balance();
 AccountType GetUserInput_AccountType();
-void Add_Account_ToArray(ACCOUNT accounts[], int* numAccounts, int accountNumber, const char* firstName, const char* lastName, float balance, AccountType type);
+
+// helper functions
+void clearInputBuffer();
+int isNumeric(const char* str);
+int isAlphabetic(const char* str);
+int isDuplicateAccount(ACCOUNT accounts[], int numAccounts, int accountNumber);
+bool isMaxAccountsReached(int numAccounts);
+
 
 #endif /* ACCOUNT_H */

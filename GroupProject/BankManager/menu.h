@@ -6,8 +6,11 @@
 #ifndef MENU_LIBRARY_H
 #define MENU_LIBRARY_H
 
-void printWelcomeMenu();
-void printOptions();
-char getCharInput(char message[]);
+#include"account.h"
+
+#include"file_operations.h"
+
+void Display_Menu();
+void ProcessUserChoice(int choice, ACCOUNT accounts[], int* numAccounts);
 
 #endif //MENU_LIBRARY_H
