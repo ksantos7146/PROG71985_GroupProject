@@ -248,20 +248,30 @@ void Print_Account_Info(ACCOUNT* account)
         account->type == CHECKING ? "Checking" : "Savings");
 }
 
+// Enhancing error handling with descriptive messages
+
 // get a valid and unique account number from user
 int GetUserInput_AccountNumber(ACCOUNT accounts[], int numAccounts) {
     int newAccountNumber;
     do {
         printf("Enter account number: ");
         //check if account number is valid and no duplicates
-        if (scanf("%d", &newAccountNumber) == 1 && !isDuplicateAccount(accounts, numAccounts, newAccountNumber)) {
-            clearInputBuffer();
-            return newAccountNumber;
+        if (scanf("%d", &newAccountNumber) == 1) {
+            if (!isDuplicateAccount(accounts, numAccounts, newAccountNumber)) {
+                clearInputBuffer();
+                return newAccountNumber;
+            }
+            else {
+                printf("Account number already exists. Please enter a different account number.\n");
+            }
         }
-        printf("Invalid account number or already exists. Please enter a different account number.\n");
+        else {
+            printf("Invalid input! Please enter a valid account number.\n");
+        }
         clearInputBuffer();
     } while (true);
 }
+
 
 // get a name from user input
 void GetUserInput_Name(char *name, const char *prompt) {
