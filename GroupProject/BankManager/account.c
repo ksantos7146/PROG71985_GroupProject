@@ -248,7 +248,7 @@ void Print_Account_Info(ACCOUNT* account)
         account->type == CHECKING ? "Checking" : "Savings");
 }
 
-// Enhancing error handling with descriptive messages
+// Enhancing error handling with descriptive messages :D cause I am nice and shit now . Ya all flamed me for not adding "descriptive messgages"
 
 // get a valid and unique account number from user
 int GetUserInput_AccountNumber(ACCOUNT accounts[], int numAccounts) {
