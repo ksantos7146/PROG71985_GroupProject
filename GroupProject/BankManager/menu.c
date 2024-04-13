@@ -44,6 +44,7 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
         else {
             printf("Invalid input!\n");
         }
+        //test_DeleteAccountOne();
         break;
     case UPDATE_ACCOUNT: // Update Account
         printf("Enter account number to update: ");
@@ -53,6 +54,7 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
         else {
             printf("Invalid input!\n");
         }
+        //test_UpdateAccount();
         break;
     case DEPOSIT: // Deposit
         printf("Enter account number to deposit: ");
@@ -62,6 +64,7 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
         else {
             printf("Invalid input!\n");
         }
+        //test_AccountDeposit();
         break;
     case WITHDRAW: // Withdraw
         printf("Enter account number to withdraw: ");
@@ -71,6 +74,7 @@ void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
         else {
             printf("Invalid input!\n");
         }
+        //test_AccountWithdrawal();
         break;
     case DISPLAY_SINGLE_ACCOUNT: // Display Single Account
         printf("Enter account number to display: ");
