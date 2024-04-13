@@ -128,16 +128,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="account.c" />
-    <ClCompile Include="customer.c" />
     <ClCompile Include="file_operations.c" />
     <ClCompile Include="menu.c" />
     <ClCompile Include="source.c" />
+    <ClCompile Include="tests.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="account.h" />
     <ClInclude Include="customer.h" />
     <ClInclude Include="file_operations.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

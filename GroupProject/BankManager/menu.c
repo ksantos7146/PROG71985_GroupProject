@@ -1,12 +1,16 @@
-//group3 - karls, madisont, adilf prog71985 - group project - menu function definitions
 #define _CRT_SECURE_NO_WARNINGS
-
 #include "menu.h"
 #include"account.h"
 #include"file_operations.h"
+#include "tests.h"
+
+//group3 - karls, madisont, adilf prog71985 - group project - menu implementation
 
 void Display_Menu() {
-    printf("\nBank Management System Menu\n");
+    printf(" *************************** \n");
+    printf("**     Welcome to Bank     **\n");
+    printf("**    Management System    **\n");
+    printf(" *************************** \n\n");
     printf("1. Add Account\n");
     printf("2. Delete Account\n");
     printf("3. Update Account\n");
@@ -17,17 +21,20 @@ void Display_Menu() {
     printf("8. Display All Accounts\n");
     printf("9. Search Account\n");
     printf("10. Save Accounts\n");
-    printf("11. Exit\n");
-    printf("Enter your choice: ");
+    printf("11. Quit\n");
+    printf("\nEnter your choice: ");
 }
 void Process_User_Choice(int choice, ACCOUNT accounts[], int* numAccounts) {
     int accountNumber;
     float minBalance, maxBalance;
     char name[MAX_NAME_LENGTH];
 
+
     switch (choice) {
     case ADD_ACCOUNT: // Add Account
         Add_Account(accounts, numAccounts);
+        //test_AddAccountOne();
+        //test_AddAccountTwo();
         break;
     case DELETE_ACCOUNT: // Delete Account
         printf("Enter account number to delete: ");

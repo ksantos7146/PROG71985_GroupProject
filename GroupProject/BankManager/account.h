@@ -1,14 +1,15 @@
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+#pragma once
+#define MAX_ACCOUNTS 100
+#define MAX_NAME_LENGTH 50
 #include "customer.h"
 #include "stdbool.h"
 
-/*Macros*/
-#define MAX_ACCOUNTS 100
-#define MAX_NAME_LENGTH 50
+//group3  - karls, madisont, adilf - prog71985 - group project - account object interface
+
+#ifndef ACCOUNT_H_LIBRARY
+#define ACCOUNT_H_LIBRARY
 
 /*NGL I had to watch 2 hour videos on ENUM alone and after learning it I feel stupid cause it was such a simple concept*/
-
 
 /*Structs and Enum*/
 typedef enum {
@@ -23,6 +24,7 @@ typedef struct {
     float balance;
     AccountType type;
 } ACCOUNT;
+
 /*Functions*/
 void Add_Account(ACCOUNT accounts[], int* numAccounts);
 void Delete_Account(ACCOUNT accounts[], int* numAccounts, int accountNumber);
@@ -49,5 +51,4 @@ int isAlphabetic(const char* str);
 int isDuplicateAccount(ACCOUNT accounts[], int numAccounts, int accountNumber);
 bool isMaxAccountsReached(int numAccounts);
 
-
-#endif /* ACCOUNT_H */
+#endif //ACCOUNT_H_LIBRARY

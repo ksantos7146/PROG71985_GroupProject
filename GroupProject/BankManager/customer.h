@@ -1,5 +1,5 @@
 #pragma once
-#define MAXNAME 30
+#define MAXNAME 50
 
 //group3  - karls, madisont, adilf - prog71985 - group project - customer object interface
 
@@ -7,15 +7,8 @@
 #define CUSTOMER_LIBRARY_H
 
 typedef struct customer {
-    int customerID;
-    char lastName[MAXNAME];
     char firstName[MAXNAME];
+    char lastName[MAXNAME];
 }CUSTOMER;
-
-
-
-
-
-
 
 #endif //CUSTOMER_LIBRARY_H

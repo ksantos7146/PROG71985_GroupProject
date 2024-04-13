@@ -2,8 +2,7 @@
 #define MAXCHAR 3
 #include "menu.h"
 
-//group3  - karls, madisont, adilf - prog71985 - group project - menu implementation
-
+//group3  - karls, madisont, adilf - prog71985 - group project - source code
 
 /*
 
@@ -24,8 +23,7 @@ Issues to be worked on (you guys can read and add stuff to this as well)
 
 */
 
-
-/*This is the main with the most hatefull coding you ever seen*/
+/*This is the main with the most hateful coding you ever seen*/
 int main() {
     ACCOUNT accounts[MAX_ACCOUNTS];
     int numAccounts = 0;

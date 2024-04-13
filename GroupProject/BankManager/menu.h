@@ -1,15 +1,13 @@
 #pragma once
-#include <stdio.h>
 #define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include"account.h"
+#include"file_operations.h"
 
 //group3 - karls, madisont, adilf - prog71985 - group project - menu interface
 
 #ifndef MENU_LIBRARY_H
 #define MENU_LIBRARY_H
-
-#include"account.h"
-#include"file_operations.h"
-
 
 typedef enum {
     ADD_ACCOUNT = 1,
