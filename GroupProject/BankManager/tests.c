@@ -88,11 +88,33 @@ void test_DeleteAccount() {
 }
 
 //Tests for update account
+void test_Update_Account() {
 
-void test_UpdateAccount() {
+    CUSTOMER customer = { "John", "Doe" };
+    ACCOUNT accounts[] = {
+        {1001, customer, 1000.0, CHECKING}
+    };
+    int numAccounts = 1;
 
+    // Hardcoded values for updating the account
+    char newFirstName[MAXNAME] = "Jane";
+    char newLastName[MAXNAME] = "Smith";
+    float newBalance = 1500.0;
 
+    
+    Update_Account(accounts, numAccounts, 1001, newFirstName, newLastName, newBalance);
 
+    // Expected result after the update
+    CUSTOMER expectedCustomer = { "Jane", "Smith" };
+    ACCOUNT expectedAccount = { 1001, expectedCustomer, 1500.0, CHECKING };
+
+    
+    if (memcmp(&accounts[0], &expectedAccount, sizeof(ACCOUNT)) == 0) {
+        printf("Test case for Update_Account: PASS\n");
+    }
+    else {
+        printf("Test case for Update_Account: FAIL\n");
+    }
 }
 
 //Tests for deposit
