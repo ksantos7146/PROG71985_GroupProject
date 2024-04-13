@@ -7,10 +7,9 @@
 
 void test_AddAccountOne();
 void test_AddAccountTwo();
-void test_DeleteAccount();
+void test_DeleteAccountOne();
 void test_UpdateAccount();
 void test_AccountDeposit();
 void test_AccountWithdrawal();
-void test_AccountWithdraw_Insufficient();
 
 #endif //TEST_LIBRARY_H
