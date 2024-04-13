@@ -18,3 +18,10 @@ Adil Farid
 - Fixed some error handling for the `GetUserInput_AccountNumber`Function
 - Fixed some magic values and input validation for some functions.
 - Created a function to clear the input buffer as it was a constant problem in the code
+
+Madison Tadros
+- Created base menu function
+- Created menu choice input function
+- Formatting for user experience
+- Code formatting and consistency checks/fixes with macros etc.
+- Wrote tests for adding/deleting/updating/deposit/withdraw account(s) 
