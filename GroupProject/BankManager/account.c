@@ -1,15 +1,3 @@
-
-//group3 - karls, madisont, adilf prog71985 - group project - account object implementation
-
-
-/*
-Dam it looks ugly here , IN MY DEFENSE I AM NOT GOOD AT CODING so there's that.
-
-Anyways these are all the functions that makes the functionality of the bank system apart from the file loading and saving cause those are in file_operation.c
-
-My sincerest apologies to whoever is going to read my code cause I did little to none commenting . Sorry Tehe ?(*°?°*)?
-
-*/
 #define _CRT_SECURE_NO_WARNINGS
 #include "account.h"
 #include <stdio.h>
@@ -17,6 +5,17 @@ My sincerest apologies to whoever is going to read my code cause I did little to
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
+
+//group3 - karls, madisont, adilf prog71985 - group project - account object implementation
+
+/*
+Dam it looks ugly here, IN MY DEFENSE I AM NOT GOOD AT CODING so there's that.
+
+Anyways these are all the functions that makes the functionality of the bank system apart from the file loading and saving cause those are in file_operation.c
+
+My sincerest apologies to whoever is going to read my code cause I did little to none commenting. Sorry Tehe ?(*°?°*)?
+
+*/
 
 void clearInputBuffer() {
     int c;
@@ -120,13 +119,13 @@ void Update_Account(ACCOUNT accounts[], int numAccounts, int accountNumber) {
         }
         printf("Enter new balance: ");
         if (scanf("%f", &accounts[i].balance) == 1) {
-            printf("Account updated successfully.\n");
+            printf("\nAccount updated successfully.\n");
         }
-        printf("Invalid input!\n");
+        printf("\nInvalid input!\n");
         return;
     }
     else {
-        printf("Account not found.\n");
+        printf("\nAccount not found.\n");
     }
 }
 
@@ -146,10 +145,10 @@ void Deposit(ACCOUNT accounts[], int numAccounts, int accountNumber) {
             return;
         }
         accounts[i].balance += amount;
-        printf("Deposit successful. New balance: %.2f\n", accounts[i].balance);
+        printf("\nDeposit successful. New balance: %.2f\n", accounts[i].balance);
     }
     else {
-        printf("Account not found.\n");
+        printf("\nAccount not found.\n");
     }
 }
 
@@ -170,14 +169,14 @@ void Withdraw(ACCOUNT accounts[], int numAccounts, int accountNumber) {
         }
         if (accounts[i].balance >= amount) {
             accounts[i].balance -= amount;
-            printf("Withdrawal successful. New balance: %.2f\n", accounts[i].balance);
+            printf("\nWithdrawal successful. New balance: %.2f\n", accounts[i].balance);
         }
         else {
-            printf("Insufficient balance.\n");
+            printf("\nInsufficient balance.\n");
         }
     }
     else {
-        printf("Account not found.\n");
+        printf("\nAccount not found.\n");
     }
 }
 

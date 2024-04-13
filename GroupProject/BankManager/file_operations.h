@@ -1,7 +1,11 @@
+#pragma once
+#include "account.h"
+
+//group3 - karls, madisont, adilf - prog71985 - group project - file operations interface
+
 #ifndef FILE_OPERATIONS_H
 #define FILE_OPERATIONS_H
-/*Libraries used*/
-#include "account.h"
+
 /*Functions*/
 void Save_Accounts(ACCOUNT accounts[], int numAccounts);
 void Load_Accounts(ACCOUNT accounts[], int* numAccounts);

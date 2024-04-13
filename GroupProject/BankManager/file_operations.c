@@ -1,9 +1,8 @@
-//group3 - karls, madisont, adilf prog71985 - group project - file operation function definitions
-
 #define _CRT_SECURE_NO_WARNINGS
 #include "file_operations.h"
 #include <stdio.h>
 
+//group3 - karls, madisont, adilf prog71985 - group project - file operations implementation
 
 /*I would LOVE I MEAN LOVEEE if you guys can do file cause I hate it*/
 
@@ -54,5 +53,5 @@ void Load_Accounts(ACCOUNT accounts[], int* numAccounts) {
     }
 
     fclose(fp);
-    printf("Accounts loaded successfully.\n");
+    printf("Accounts loaded successfully.\n\n");
 }
